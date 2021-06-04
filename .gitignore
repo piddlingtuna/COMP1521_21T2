@@ -10,7 +10,7 @@
 ### Above combination will ignore all files without extension ###
 
 # Ignore labs
-lab*/*
+21T2/*
 
 # Prerequisites
 *.d
