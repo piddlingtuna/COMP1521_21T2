@@ -9,7 +9,8 @@
 
 ### Above combination will ignore all files without extension ###
 
-# Ignore labs
+# Ignore labs and assignments
+20T2/*
 21T2/*
 
 # Prerequisites
