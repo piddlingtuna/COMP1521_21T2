@@ -33,7 +33,7 @@ int main(void) {
     uint16_t ok_as_well = ok + also_ok;
     printf("%u\n", ok_as_well);
 
-    // 30000u + 30000u
+    // 30000u + 30000u;
 
     return 0;
 }

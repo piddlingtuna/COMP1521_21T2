@@ -12,18 +12,18 @@ int main(void) {
     uint32_t middle = six_middle_bits(bits);
 
     printf("bits:   0x%x\n", bits);
-    printf("last: %d\n", middle);
-    printf("middle: %d\n", middle);
+    printf("last:   0x%x\n", last);
+    printf("middle: 0x%x\n", middle);
 
     return 0;
 }
 
 uint32_t six_last_bits(uint32_t bits) {
-    return bits;
+    return bits & 0x3f;
 }
 
 uint32_t six_middle_bits(uint32_t bits) {
-    return bits;
+    return (bits >> 13) & 0x3f;
 }
 
 /*
