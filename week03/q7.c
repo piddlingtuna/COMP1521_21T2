@@ -6,6 +6,7 @@ struct {
 	int a; // 4 bytes
 	double b; // 8 bytes
 } x1;
+
 /*
 --------------------
 | int a | double b |
@@ -16,6 +17,7 @@ union {
 	int a; // 4 bytes
 	double b; // 8 bytes
 } x2;
+
 /*
 ---------------------
 | int a or double b |

@@ -19,6 +19,7 @@ int main(void) {
 }
 
 uint32_t six_last_bits(uint32_t bits) {
+    // return bits & 0b111111;
     return bits & 0x3f;
 }
 

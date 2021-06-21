@@ -10,12 +10,12 @@ sizeof(int) == 4
 union {
     int a;
     int b;
-} u1; // max(4, 4) == 4 bytes
+} u1;
 
 union {
     unsigned short a;
     char b;
-} u2; // max(2,1) == 2 bytes
+} u2;
 
 union {
     int a;
@@ -23,13 +23,13 @@ union {
 } u3; // max(4, 12) == 12 bytes
 
 union {
-    double a; // 8 bytes
-    char b[14]; // 14 bytes
-} u4; // max(8, 14) == 16 bytes
+    double a;
+    char b[14];
+} u4;
 // PADDING - size must be divisible by size of every type.
 
 union {
     unsigned int a;
     int b;
     struct { int x; int y; } c;
-} u5; // max(4, 4, 8) == 8 bytes
+} u5;
