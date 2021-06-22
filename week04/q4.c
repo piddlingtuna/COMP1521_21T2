@@ -31,22 +31,33 @@ int main2(void) {
     scanf("%d", &x);
 
     char *message = "small/big\n";
-    if (/* condition1 is true */) goto case1;
-    if (/* condition2 is true */) goto case2;
+    if (x > 100 && x < 1000) {
+        message = "medium";
+    }
+
+    printf("%s", message);
+
+    return 0;
+}
+
+/*
+How to deal with if-else statements
+*/
+
+int main3(void) {
+    if (1 /* condition1 */) goto case1;
+    if (0 /* condition2 is true */) goto case2;
     // else
-    message = "medium";
     goto end;
     
 case1:
-    // deal with this case
+    // Deal with stuff
     goto end;
 
-condition2:
-
+case2:
+    // Deal with stuff
     goto end;
     
 end:
-    printf("%s", message);
-
     return 0;
 }

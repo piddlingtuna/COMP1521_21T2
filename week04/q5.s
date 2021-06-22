@@ -1,13 +1,11 @@
     .text
-
 # x in register $t1
-
 main:
 # x = 24
     li $t0, 24
 
 loop:
-# if (i > 42) goto end0;
+# if (i > 42) goto end;
     bgt $t0, 42, end;
 
 # printf("%d", x);
@@ -23,10 +21,9 @@ loop:
 # x += 3
     addi $t0, $t0, 3 # $t0 = $t0 + 3
     
+# goto loop
     j loop
 
 end:
 # return 0; - not quite the same
 jr $ra
-
-    .data
