@@ -31,10 +31,21 @@ int main2(void) {
     scanf("%d", &x);
 
     char *message = "small/big\n";
-    if (x > 100 && x < 1000) {
-        message = "medium";
-    }
+    if (/* condition1 is true */) goto case1;
+    if (/* condition2 is true */) goto case2;
+    // else
+    message = "medium";
+    goto end;
+    
+case1:
+    // deal with this case
+    goto end;
 
+condition2:
+
+    goto end;
+    
+end:
     printf("%s", message);
 
     return 0;
