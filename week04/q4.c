@@ -49,7 +49,7 @@ int main3(void) {
     if (0 /* condition2 is true */) goto case2;
     // else
     goto end;
-    
+
 case1:
     // Deal with stuff
     goto end;
@@ -57,7 +57,7 @@ case1:
 case2:
     // Deal with stuff
     goto end;
-    
+
 end:
     return 0;
 }
