@@ -25,3 +25,4 @@ end1:
 
 end0:
 # return 0; - not quite the same
+    jr $ra

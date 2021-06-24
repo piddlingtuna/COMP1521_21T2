@@ -32,6 +32,7 @@ main_fac_f:
 # printf("\n")
 
 # return 0; - not quite the same
+    jr $ra
 
     .data
 

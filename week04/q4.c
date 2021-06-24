@@ -45,19 +45,17 @@ How to deal with if-else statements
 */
 
 int main3(void) {
-    if (1 /* condition1 */) goto case1;
-    if (0 /* condition2 is true */) goto case2;
-    // else
-    goto end;
+    if (/* condition1 is false */ 1) goto case2;
+        /* deal with case1 */
+        goto end;
+    case2:
+    if (/* condition2 is false */ 1) goto case3;
+        /* deal with case2 */
+        goto end;
+    case3:
+    
+        goto end;
+    end:
 
-case1:
-    // Deal with stuff
-    goto end;
-
-case2:
-    // Deal with stuff
-    goto end;
-
-end:
     return 0;
 }
