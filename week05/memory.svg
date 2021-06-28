@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////
+// COMP1521 ... SPIM memory layout diagram
+//
+// 2017-08-15   John Shepherd <jas@cse.unsw.edu.au>
+// 2020-05-19   Jashank Jeremy <jashank.jeremy@unsw.edu.au>
+//     Redrawn as a SVG (previously only OmniGraffle and PNG).
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="672" height="112"
+     stroke="black" fill="none">
+
+  <style>
+    .unmapped {
+      stroke-linecap: square;
+      stroke-dasharray: 4, 4;
+    }
+
+    text {
+      font-weight: normal;
+      font-size: 12px;
+      text-anchor: middle;
+      stroke: none;
+      fill: black;
+    }
+
+    .region-name { font-family: sans-serif }
+    .region-addr { font-family: monospace }
+  </style>
+
+  <defs>
+    <marker
+        id="arrowhead"
+        refX="0" refY="4"
+        markerUnits="strokeWidth" markerWidth="8" markerHeight="8"
+        orient="auto">
+      <!-- newpath 348 56 moveto 8 -4 rlineto 8 0 rlineto closepath fill -->
+      <path d="M 8 4    l -8 -4    v +8    z"
+            stroke="none" fill="black" />
+    </marker>
+
+    <rect class="region" id="half-region" width="48" height="32" y="40" />
+    <rect class="region" id="full-region" width="96" height="32" y="40" />
+  </defs>
+
+  <!-- background fill -->
+  <rect x="0" y="0" width="672" height="112" fill="white" stroke="none" />
+
+  <use xlink:href="#half-region" class="unmapped" id="zero"  x=" 48" />
+  <use xlink:href="#full-region" class="  mapped" id="text"  x=" 96" />
+  <use xlink:href="#full-region" class="  mapped" id="data"  x="192" />
+  <use xlink:href="#full-region" class="unmapped" id="gap"   x="288" />
+  <use xlink:href="#half-region" class="  mapped" id="stack" x="384" />
+  <use xlink:href="#full-region" class="  mapped" id="ktext" x="432" />
+  <use xlink:href="#full-region" class="  mapped" id="kdata" x="528" />
+
+  <text class="region-name" x="144" y="60">text</text>
+  <text class="region-name" x="240" y="60">data</text>
+  <text class="region-name" x="408" y="60">stack</text>
+  <text class="region-name" x="480" y="60">k_text</text>
+  <text class="region-name" x="576" y="60">k_data</text>
+
+  <text class="region-addr" x=" 48" y="90">0x00000000</text>
+  <text class="region-addr" x=" 96" y="32">0x00400000</text>
+  <text class="region-addr" x="192" y="32">0x10000000</text>
+  <text class="region-addr" x="432" y="32">0x7ffffeff</text>
+  <text class="region-addr" x="432" y="90">0x80000000</text>
+  <text class="region-addr" x="528" y="90">0x90000000</text>
+  <text class="region-addr" x="624" y="90">0xfffffffc</text>
+
+  <!-- stack direction arrow -->
+  <path d="M 384 56    h -32" marker-end="url(#arrowhead)" />
+</svg>
