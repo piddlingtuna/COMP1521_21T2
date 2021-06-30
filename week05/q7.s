@@ -6,7 +6,7 @@
 
 main:
 
-    la $a0 scan        # load print into $a0
+    la $a0 scan         # load print into $a0
     li $v0 4            # syscall 4: print_string
     syscall             # printf("Scan:\n");
 
@@ -31,7 +31,7 @@ scan_loop:
     sw $v0 ($t3)        # scanf("%d" &numbers[1]);
 
     # $t0 = $t0 + 1
-    addi $t0 $t0 1    # i++;
+    addi $t0 $t0 1      # i++;
     j scan_loop
 
 scan_end:
@@ -45,7 +45,7 @@ scan_end:
 
 print_loop:
     # if (i >= 10) goto print_end
-    bge $t0 10 print_end # while (i < 10)
+    bge $t0 10 print_end    # while (i < 10)
 
     mul $t2 $t0 4       # $t2 = i * 4
     la $t1 numbers      # $t2 = numbers
@@ -70,7 +70,7 @@ print_end:
 
     .data
 numbers:
-    .word 0 0 0 0 0 0 0 0 0 0  # int numbers[10] = {0};
+    .word 0 0 0 0 0 0 0 0 0 0   # int numbers[10] = {0};
 
 scan:
     .asciiz "Scan:\n"
