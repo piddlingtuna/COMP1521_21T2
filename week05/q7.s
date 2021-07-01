@@ -17,7 +17,7 @@ scan_loop:
     # if (i >= 10) goto scan_end
     bge $t0 10 scan_end # while (i < 10)
 
-    li $v0 5            # syscall 1: print_int
+    li $v0 5            # syscall 5: read_int
     syscall             # scanned in value is $v0
     
     # 1st loop: numbers + (0 * 4)

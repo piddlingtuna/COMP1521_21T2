@@ -15,7 +15,7 @@ main_do:
 
     # '\n' == 10
 	li $a0 10         	# print '\n; in syscall
-	li $v0 11          	# syscall 1: print_character
+	li $v0 11          	# syscall 11: print_character
 	syscall             # printf("\n");
 
 	bgt $t0 10 main_end # while (i <= 10);
