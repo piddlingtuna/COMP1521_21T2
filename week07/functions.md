@@ -1,18 +1,3 @@
-# Functions
-
-## Registers
-
-![registers](registers.png)
-
-## Memory
-
-![memory](memory.svg)
-
-## Functions
-
-![functions](functions.png)
-
-
 int main (void) {
 
     li $s0, 1
