@@ -27,6 +27,8 @@
 
 ## What is a file?
 
+- program.c, work.docx, index.html
+
 - Array of bytes.
 
 - Stored on a hard drive.

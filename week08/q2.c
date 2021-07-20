@@ -17,3 +17,12 @@ int main (void) {
         printf("x = %d\n", x);
     }
 }
+
+// fork fails
+fork failed
+// child, parent
+x = 0
+x = 2
+// parent, child
+x = 2
+x = 0
