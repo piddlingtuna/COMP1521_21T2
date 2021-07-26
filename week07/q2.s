@@ -4,17 +4,6 @@
 
 .data
 
-# int v0;
-
-
-# int v1 = 42;
-
-
-# char v2;
-
-# lw $t0 v3
-# sw $t0 v3
-
 # char v3 = 'a';
 v3:
     .byte 'a'
@@ -29,7 +18,7 @@ v5:
 
 # int v6[10][5];
 v6:
-    .space 200 # 4 * 10 * 5
+    .space 200 # sizeof(int) * 10 * 5
 
 # struct { int x; int y; } v7;
 v7:
@@ -40,11 +29,13 @@ v8:
     .space 32 # 8 * 4
 
 
-# struct { int x; int y; } *v9[4]; #array to pointers of structs
+# struct { int x; int y; } *v9[4];
+# This is an array of pointers of structs.
+# Assume pointers are 4 bytes.
 v9:
-    .space 4 * 4
+    .space 16 # 4 * 4
 
-32-bit computer (32 bits == 4 bytes)
-size of a register is 32 bits
-size of memory is 2^32 bytes == 4 gb
+# 32-bit computer (32 bits == 4 bytes) implies:
+# - size of a register is 32 bits
+# - size of memory is 2^32 bytes ~= 4 gigabytes
 
