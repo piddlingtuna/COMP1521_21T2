@@ -4,43 +4,33 @@
 // What are the possible outputs from the execution of this code?
 // Assume fork succeeds
 int main (void) {
-    printf("Hello\n");
-    if (fork() != 0) - 2 different programs both printing to same terminal
+    printf("Hello\n"); // Only 1 process running
+    if (fork() != 0) // 2 different processes running, both printing to same terminal
+        // Does the OS run the child or parent first? Order is unpredictable.
         printf("Gan bei\n");
+        // OS can switch to the child here
     else
         printf("Prost\n");
+        // OS can switch to the parent here
     printf ("Goodbye\n");
 }
 
+/*
 Hello\n
-// child runs first
+// Child runs first
 Prost\n
 Goodbye\n
-// then parent runs
+// Then parent runs
 Gan bei\n
 Goodbye\n
 
 Hello\n
+// Parent runs first
 Gan bei\n
 Goodbye\n
+// Then child runs
 Prost\n
 Goodbye\n
-
-
-int main (void) {
-    printf("Hello\n"); - just one process
-    PC - program counter - instruction you are actually executing 
-    if (fork() != 0) - 2 different programs both printing to same terminal
-        // does the OS run the child or parent first?
-        printf("Gan bei\n");
-        // OS can switch to the child
-    else
-        printf("Prost\n");
-        // OS can switch to the parent
-    printf ("Goodbye\n");
-}
-
-// fork - order is unpredictable
 
 Hello\n
 Gan bei\n
@@ -53,3 +43,4 @@ Prost\n
 Gan bei\n
 Goodbye\n
 Goodbye\n
+*/

@@ -5,8 +5,7 @@
 #include <unistd.h>
 
 static void handler (int sig) {
-    printf("Quitting...\n");
-    printf("%d\n", sig);
+    printf("Captured: %d\n", sig);
     exit(0);
 }
 
@@ -15,13 +14,15 @@ static void handler (int sig) {
 int main (int argc, char *argv[]) {
     struct sigaction act;
     memset(&act, 0, sizeof (act));
-    printf("pid: %d\n", getpid());
-    act.sa_handler = &handler;
+    act.sa_handler = &handler; // pointer to a function
+    
     sigaction(SIGHUP, &act, NULL);
     sigaction(SIGINT, &act, NULL);
-    sigaction(SIGKILL, &act, NULL); // can't override overkill 
+    sigaction(SIGKILL, &act, NULL); // can't override SIGKILL 
+    
+    printf("pid: %d\n", getpid());
     while (1) {
-        sleep (15);
+        sleep (1);
     }
     return 0;
 }
@@ -30,11 +31,15 @@ int main (int argc, char *argv[]) {
 What does this program do if it receives
 
     a. SIGHUP signal
+    Gets handled by handler.
 
     b. SIGINT signal?
+    Gets handled by handler.
 
     c. SIGTSTP signal?
+    Stops program.
 
     d. SIGKILL signal?
+    Kills program.
 
 */

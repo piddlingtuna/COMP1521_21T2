@@ -18,11 +18,13 @@ int main (void) {
     }
 }
 
-// fork fails
-fork failed
-// child, parent
-x = 0
-x = 2
-// parent, child
-x = 2
-x = 0
+// `fork` fails
+// -1
+
+// Child then parent
+// x = 0
+// x = 2
+
+// Parent then child
+// x = 2
+// x = 0
