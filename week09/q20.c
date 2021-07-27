@@ -8,6 +8,7 @@
 // How many calls with be made to the read() function, and what is the value of nb after each call?
 
 #define BUFFER_SIZE 1000
+
 int main(void) {
     int fd;         // open file descriptor
     int nb;         // # bytes read
@@ -27,3 +28,8 @@ int main(void) {
     
     return 0;
 }
+
+// 1st call - reads 1000 bytes
+// 2nd call - reads 1000 bytes
+// 3rd call - reads 500 bytes
+// 4th call - reads 0 bytes
