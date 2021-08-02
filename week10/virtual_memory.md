@@ -2,23 +2,28 @@
 
 ## Why use virtual memory?
 
-4 GB -> 8 GB
+You have 4 GB of RAM but want to run processes that take up 8 GB of RAM.
 
-- allows a computer to use more RAM than it has
-- lazy loading - only load pages you actually use at the moment into RAM
-- share read-only memory like libraries
-- assembly (ie MIPS) works on actual, physical addresses
+Solution: virtual memory!
+
+Advantages:
+- allows a computer to use more RAM than it actually has
+- lazy loading - only load memory you actually use
+- share read-only memory like libraries (think stdio.h)
+
+Disadvantages:
+- assembly (i.e. MIPS) works on actual, physical addresses
     - but you won't know what actual address you will be given?
     - must semi-recompile before you run a program
-    - virtual addressing avoids this
+    - virtual addressing avoids this (translation is done by hardware)
 
-j 0xff331243 -> 0x1245566
 
-jal 0x123456
+q5) Each new process in a computer system will have a new address space. Which parts of the address space contain initial values at the point when the process starts running? Code? Data? Heap? Stack? Which parts of the address space can be modified as the process executes?
 
-locality.c
+![address_space](address_space.png)
 
-## Idea
+
+## What is virtual memory?
 
 Physical memory is split into equal sized frames.
 
@@ -34,6 +39,9 @@ Could work with varying sized pages/frames but a lot harder and slower.
 
 Could work with non power of 2 sizes but slower - power of 2 lets you use bitwise operators.
 
+Q7) What is the difference between a virtual address and a physical address?
+
+
 ## Translation
 
 #define PAGE_SIZE 4096
@@ -42,7 +50,9 @@ page_table is an array
 - index is your virtual memory page number.
 - get back is your physical frame number
 
-PAGE_SIZE * page_table[page_number].frame + offset;
+page_number = virtual_address / PAGE_SIZE;
+offset = virtual_address % PAGE_SIZE;
+physical_address = PAGE_SIZE * page_table[page_number] + offset;
 
 | Virtual Page | Physical Frame|
 |--------------|---------------|
@@ -51,55 +61,24 @@ PAGE_SIZE * page_table[page_number].frame + offset;
 | 2            | 5             |
 | 3            | 2             |
 
-What is the physical address of 5096?
+Given a virtual address of 10000, what is the phhysical address?
 
-Physical address = 9192
+TODO
 
-Virtual page == 5096 / 4096 = 1
+Given a virtual address of 5096, what is the phhysical address?
 
-Offset 5096 % 4096 = 1000
-
-Physical page page_table[1] == 2
-
-2 * 4096 + offset
-
-2 * 4096 + 1000
-
-Virtual address == 10000
-Find physical address
-
-Virtual page == 10000 / PAGESIZE = 10 000 / 4096 == 2
-Offset == 10 000 % PAGESIZE == 1808
-
-Physical page = 5
-
-Physical address == PAGESIZE * physical_page + offset
-                 == 4096 * 5 + 1808
-                 == 22288
+TODO
 
 
 ## Least Recently Used
 
-Remember - virtual memory let's you have more virtual memory (pages) than actual physical memory (frame).
+Virtual memory let's you have more virtual memory (pages) than actual physical memory (frame).
 
 So we may have to kick out some pages if #pages > #frames.
 
 How do we decide which frames to kick out?
 
-Idea - page not used recently probably won't be needed again soon.
-
-Assume we have 6 virtual memory pages and 4 physical memory frames and are using a least-recently-used (LRU) replacement strategy.
-
-What will happen if these virtual memory pages were accessed? 
-
-5 3 5 3 0 1 2 4 2 3 5
-
-| Frame | Page | Last Used |
-|-------|------|-----------|
-| 1     | 4    | 7         |
-| 2     | 3    | 9         |
-| 3     | 5    | 10        |
-| 4     | 2    | 8         |
+Page not used recently probably won't be needed again soon.
 
 // 1) The virtual page is already in a physical page
 //
@@ -108,6 +87,22 @@ What will happen if these virtual memory pages were accessed?
 //
 // 3) The virtual page is not in a physical page,
 //    and there is no free physical page
+
+Q3) Assume we have 6 virtual memory pages and 4 physical memory frames
+and are using a least-recently-used (LRU) replacement strategy.
+
+What will happen if these virtual memory pages were accessed? 
+
+5 3 5 3 0 1 2 2 3 5
+
+Clock: 0
+
+| Frame | Page | Last Used |
+|-------|------|-----------|
+| 1     |      |           |
+| 2     |      |           |
+| 3     |      |           |
+| 4     |      |           |
 
 
 Note: Least recently used is the best possible algorithm. However, it is too slow too to be practical in a real OS.
@@ -120,12 +115,14 @@ We load it in from the hard drive.
 
 This is how demand paging works.
 
+It is really slow...
 
-## Thrashing?
+![memory_hierarchy](memory_hierarchy.gif)
 
-Why do all the kicked out pages go...
 
-your hard drive
+## Thrashing
+
+Why do all the kicked out pages go?
 
 HDD is 1 000 000x slower than RAM.
 SDD is 10 000x slower than RAM.
@@ -149,5 +146,4 @@ We are loading pages into RAM and out of RAM very frequently.
 
 This is called thrashing.
 
-This will cause your computer to be extremely slow.
-
+Your computer will be extremely slow...
