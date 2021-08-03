@@ -13,19 +13,21 @@ The answer: pseudo-parallelism. Quickly switch between different processes.
 
 The '-' represents a process being run in the CPU.
 
-Process 1 -----         -----
+Process 1 -----         ----- <- Chrome
 
-Process 2      -----         -----
+Process 2      -----         ----- <- dcc
 
 Process 3           -----         -----
+
+Mouse      -              -      -   -
 
 Processes must be switched so they don't notice their execution is constantly being paused and restarted.
 
 
 ## What is a process?
 
-Execution state:
-- CPU registers
+Execution state (what you need to run something in the CPU)
+- CPU registers (like your 32 MIPS registers)
 - Program counter
 
 A thread consists of:

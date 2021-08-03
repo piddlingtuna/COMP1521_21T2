@@ -6,6 +6,9 @@ You have 4 GB of RAM but want to run processes that take up 8 GB of RAM.
 
 Solution: virtual memory!
 
+RAM - fast but small
+Hard drive - really large (a lot slower)
+
 Advantages:
 - allows a computer to use more RAM than it actually has
 - lazy loading - only load memory you actually use
@@ -33,13 +36,24 @@ A frame is the same size as a page.
 
 Frame/page size is a power of 2.
 
-Whenever you access memory, translate virtual page to physical frame
+4k == 4096 bytes
+
+Whenever you access memory, translate virtual page to physical frame.
+- Slower than if we just use physical memory.
+- Memory management unit (MMU) - translations really fast
 
 Could work with varying sized pages/frames but a lot harder and slower.
 
 Could work with non power of 2 sizes but slower - power of 2 lets you use bitwise operators.
 
+2048 / 2 == 2048 >> 1
+
+010000 / 2 == 001000
+
 Q7) What is the difference between a virtual address and a physical address?
+
+- virtual address is an offset in a process' address space (virtual memory)
+- physical is an absolute offset inside actual memory.
 
 
 ## Translation
@@ -50,7 +64,7 @@ page_table is an array
 - index is your virtual memory page number.
 - get back is your physical frame number
 
-page_number = virtual_address / PAGE_SIZE;
+page_number = virtual_address / PAGE_SIZE; (integer division)
 offset = virtual_address % PAGE_SIZE;
 physical_address = PAGE_SIZE * page_table[page_number] + offset;
 
@@ -61,13 +75,24 @@ physical_address = PAGE_SIZE * page_table[page_number] + offset;
 | 2            | 5             |
 | 3            | 2             |
 
-Given a virtual address of 10000, what is the phhysical address?
+Given a virtual address of 10000, what is the physical address?
 
-TODO
+page_number = 10000 / 4096 == 1
+offset = 5096 % 4096 == 10000
+physical_address = 4096 * page_table[page_number] + 10000;
 
-Given a virtual address of 5096, what is the phhysical address?
 
-TODO
+Given a virtual address of 5096, what is the physical address?
+
+page_number = 5096 / 4096 == 2
+offset = 5096 % 4096 == 1808
+physical_address = 4096 * 5 + 1808 == 22288;
+
+PAGE FAULT
+
+Virtual page 1 is not in memory:
+- isn't enough physical memory
+- hasn't been used yet (lazy loading)
 
 
 ## Least Recently Used
@@ -81,6 +106,7 @@ How do we decide which frames to kick out?
 Page not used recently probably won't be needed again soon.
 
 // 1) The virtual page is already in a physical page
+// Update counter
 //
 // 2) The virtual page is not in a physical page,
 //    and there is free physical page
@@ -95,19 +121,23 @@ What will happen if these virtual memory pages were accessed?
 
 5 3 5 3 0 1 2 2 3 5
 
-Clock: 0
+Inverted page table
+
+Clock: 9
 
 | Frame | Page | Last Used |
 |-------|------|-----------|
-| 1     |      |           |
-| 2     |      |           |
-| 3     |      |           |
-| 4     |      |           |
+| 0     |  2   | 7         |
+| 1     |  3   | 8         |
+| 2     |  5   | 9         |
+| 3     |  1   | 5         |
 
 
 Note: Least recently used is the best possible algorithm. However, it is too slow too to be practical in a real OS.
 
 ## Page fault
+
+Only when it hits a page that does not exit.
 
 When we try to a page in physical RAM but it isn't there :(
 
@@ -135,12 +165,14 @@ What will happen if these virtual memory pages were accessed?
 
 | Frame | Page | Last Used |
 |-------|------|-----------|
-| 1     | 5    | 5         |
+| 1     | 4    | 9         |
 | 2     | 1    | 6         |
 | 3     | 2    | 7         |
-| 4     | 4    | 4         |
+| 4     | 3    | 8         |
 
 working set > #physical RAM
+
+working set == RAM we are currently using
 
 We are loading pages into RAM and out of RAM very frequently.
 
