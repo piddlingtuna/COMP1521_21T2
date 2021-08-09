@@ -10,10 +10,10 @@
 #define BUFFER_SIZE 1000
 
 int main(void) {
-    int fd;         // open file descriptor
-    int nb;         // # bytes read
-    int ns = 0;     // # spaces
-    char buf[BUFFER_SIZE]; // input buffer
+    int fd;                 // open file descriptor
+    int nb;                 // # bytes read
+    int ns = 0;             // # spaces
+    char buf[BUFFER_SIZE];  // input buffer
     
     fd = open ("xyz", O_RDONLY);
     assert (fd >= 0);

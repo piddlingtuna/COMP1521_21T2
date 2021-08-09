@@ -10,8 +10,7 @@ int main(int argc, char *argv[]) {
     }
     
     FILE *stream = fopen(argv[1], "a");
-    // stream
-    // - file
+    // stream is like a file you can write/read to.
     // - stdin - reads from your terminal
     // - stdout - prints to your terminal
     // - stderr - prints to your terminal
@@ -21,10 +20,10 @@ int main(int argc, char *argv[]) {
         return 1; // same as exit(1) because you're in main
     }
     
-    int c; // EOF *on most systems is -1
+    int c; // EOF - on *most* systems is -1
     int cont = 1;
     while (cont && (c = fgetc(stdin)) != EOF) {
-    // when you assign a variable, you return it.
+        // when you assign a variable, you return it.
         fputc(c, stream);
         if (c == '\n') {
             cont = 0;

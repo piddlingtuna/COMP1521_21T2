@@ -8,7 +8,7 @@
 
 // If the file or directory is publically-writeable, it should change it to be not publically-writeable, leaving other permissions unchanged.
 
-// chmod +x - give everyone x or executable permission
+// chmod +x - give everyone x (executable) permission
 // chmod 777
 // chmod 664
 
@@ -16,7 +16,6 @@
 // octal == 3 bits == 2^3 numbers
 // rwx
 // 111
-// 421
 
 void chmod_if_needed(char *pathname);
 
