@@ -1,3 +1,3 @@
 # Tutorial 9
 
-How is the assignment going?
+How is everyone going with assignment 2?

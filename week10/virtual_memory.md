@@ -46,8 +46,7 @@ Could work with varying sized pages/frames but a lot harder and slower.
 
 Could work with non power of 2 sizes but slower - power of 2 lets you use bitwise operators.
 
-2048 / 2 == 2048 >> 1
-
+16 / 2 == 16 >> 1
 010000 / 2 == 001000
 
 Q7) What is the difference between a virtual address and a physical address?
@@ -88,12 +87,12 @@ page_number = 5096 / 4096 == 2
 offset = 5096 % 4096 == 1808
 physical_address = 4096 * 5 + 1808 == 22288;
 
-PAGE FAULT
 
-Virtual page 1 is not in memory:
+Virtual page is not in memory:
 - isn't enough physical memory
 - hasn't been used yet (lazy loading)
 
+This causes a page fault. The page is loaded from the hard drive into RAM.
 
 ## Least Recently Used
 
