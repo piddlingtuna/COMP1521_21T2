@@ -10,8 +10,7 @@
 ### Above combination will ignore all files without extension ###
 
 # Ignore labs and assignments
-20T2/*
-21T2/*
+assessed/*
 
 # Prerequisites
 *.d
